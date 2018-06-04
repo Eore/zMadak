@@ -1,5 +1,11 @@
 {
-  "database": {},
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "sismadak",
+    "user": "root",
+    "password": ""
+  },
   "server": {
     "port": 3000
   }

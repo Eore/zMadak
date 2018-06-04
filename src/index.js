@@ -5,6 +5,9 @@ const bodyParser = require("body-parser");
 
 const { port } = require("./config.json").server;
 
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
+
 app.use(fileUpload());
 app.use(bodyParser.json());
 
