@@ -3,7 +3,8 @@ const {
   tambahModul,
   listModul,
   hapusModul,
-  cariFileModul
+  cariFileModul,
+  editModul
 } = require("./controller");
 const multer = require("multer");
 const upload = multer({ dest: "storage/" });
@@ -20,14 +21,12 @@ router
     );
   })
   .post(upload.single("modul"), (rq, rs) => {
-    tambahModul({
-      ...rq.body,
-      nama_file: rq.file.filename
-    })
+    let nama_file = rq.file === undefined ? null : rq.file.filename;
+    tambahModul({ ...rq.body, nama_file })
       .then(() =>
         rs.status(201).json({
           message: "Modul ditambah",
-          data: rq.body
+          data: { ...rq.body, nama_file }
         })
       )
       .catch(err => {
@@ -56,6 +55,15 @@ router
         });
       }
     });
+  })
+  .patch((rq, rs) => {
+    let nama_file = rq.file === undefined ? null : rq.file.filename;
+    editModul(rq.params.idmodul, { ...rq.body, nama_file }).then(() =>
+      rs.status(201).json({
+        message: "Modul diupdate",
+        data: { ...rq.body, nama_file }
+      })
+    );
   });
 
 router.route("/getfile/:id");
