@@ -1,4 +1,4 @@
-const sql = require("../../modules/database")();
+const sql = require("../../modules/database");
 const S = sql.Sequelize;
 
 const user = sql.define(
@@ -12,15 +12,24 @@ const user = sql.define(
     username: {
       type: S.STRING(30),
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        notEmpty: true
+      }
     },
     password: {
       type: S.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     nama: {
       type: S.STRING(30),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     email: {
       type: S.STRING(30),
@@ -31,7 +40,10 @@ const user = sql.define(
     },
     id_pokja: {
       type: S.UUID,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
   },
   {

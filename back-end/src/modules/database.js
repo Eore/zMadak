@@ -16,18 +16,15 @@ let config = {
   operatorsAliases: false
 };
 
-const connection = () => {
-  let newCon = new Sequelize({
-    ...config,
-    database,
-    logging: false
-  });
-  newCon.query("select 1+1 as test").catch(err => {
-    console.log("Inisialisasi database...");
-    let test = new Sequelize(config);
-    test.query("create database if not exists zmadak");
-  });
-  return newCon;
-};
+let newCon = new Sequelize({
+  ...config,
+  database,
+  logging: false
+});
+newCon.query("select 1+1 as test").catch(err => {
+  console.log("Inisialisasi database...");
+  let test = new Sequelize(config);
+  test.query("create database if not exists zmadak", { logging: false });
+});
 
-module.exports = connection;
+module.exports = newCon;

@@ -1,4 +1,4 @@
-const sql = require("../../modules/database")();
+const sql = require("../../modules/database");
 const S = sql.Sequelize;
 
 const modul = sql.define(
@@ -12,11 +12,17 @@ const modul = sql.define(
     nama_modul: {
       type: S.STRING(50),
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        notEmpty: true
+      }
     },
     nama_file: {
       type: S.STRING(50),
-      allowNull: true
+      allowNull: true,
+      validate: {
+        notEmpty: true
+      }
     },
     deskripsi: {
       type: S.TEXT,
@@ -24,7 +30,10 @@ const modul = sql.define(
     },
     id_pokja: {
       type: S.UUID,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
   },
   {

@@ -1,4 +1,4 @@
-const sql = require("../../modules/database")();
+const sql = require("../../modules/database");
 const S = sql.Sequelize;
 
 const pokja = sql.define(
@@ -12,7 +12,10 @@ const pokja = sql.define(
     pokja: {
       type: S.STRING(30),
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        notEmpty: true
+      }
     }
   },
   {
