@@ -30,5 +30,8 @@ module.exports = {
         return val;
       }
     });
+  },
+  cariFileModul(id) {
+    return model.find({ where: { id } }).then(val => val.nama_file);
   }
 };
