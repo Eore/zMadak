@@ -2,8 +2,8 @@
   "database": {
     "host": "localhost",
     "port": 3306,
-    "database": "sismadak",
-    "user": "root",
+    "database": "zMadak",
+    "username": "root",
     "password": ""
   },
   "server": {
