@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { cariUser, tambahUser, editUser } = require("./controller");
+const { genToken } = require("../../modules/token");
 
 router.route("/").post((rq, rs) => {
   tambahUser(rq.body)

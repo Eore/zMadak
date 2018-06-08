@@ -1,18 +1,18 @@
 const model = require("./model");
-const ecnrypt = require("../../modules/encrypt");
+const encrypt = require("../../modules/encrypt");
 
 module.exports = {
   tambahUser(data = { username, password, nama, email, id_pokja }) {
     return model.create({
       ...data,
-      password: ecnrypt(data.password)
+      password: encrypt(data.password)
     });
   },
   editUser(id, data = { password, nama, email, id_pokja }) {
     return model.update(
       {
         ...data,
-        password: ecnrypt(data.password)
+        password: encrypt(data.password)
       },
       { where: { id } }
     );
@@ -29,5 +29,8 @@ module.exports = {
           pokja: el.pokja.pokja
         };
       });
+  },
+  login(username, password) {
+    return model.find({ where: { username, password: encrypt(password) } });
   }
 };
