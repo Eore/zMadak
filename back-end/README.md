@@ -4,8 +4,8 @@ Dokumentasi singkat API Sistem Informasi Akreditasi
 
 ## **Pokja**
 
-URL : `/api/pokja`
-Method : `GET`
+URL : `/api/pokja`\
+Method : `GET`\
 Respon :
 
 ```json
@@ -22,8 +22,8 @@ Respon :
 
 ---
 
-URL : `/api/pokja`
-Method : `POST`
+URL : `/api/pokja`\
+Method : `POST`\
 Format data :
 
 ```json
@@ -45,8 +45,8 @@ Respon :
 
 ---
 
-URL : `/api/pokja/:idpokja`
-Method : `DELETE`
+URL : `/api/pokja/:idpokja`\
+Method : `DELETE`\
 Respon :
 
 ```json
@@ -57,8 +57,8 @@ Respon :
 
 ## **Modul**
 
-URL : `/api/modul?filter=nama_pokja`
-Method : `GET`
+URL : `/api/modul?filter=nama_pokja`\
+Method : `GET`\
 Respon :
 
 ```json
@@ -77,8 +77,8 @@ Respon :
 
 ---
 
-URL : `/api/modul/`
-Method : `POST`
+URL : `/api/modul/`\
+Method : `POST`\
 Format data :
 
 ```json
@@ -106,14 +106,14 @@ Respon :
 
 ---
 
-URL : `/api/modul/:idmodul`
-Method : `GET`
+URL : `/api/modul/:idmodul`\
+Method : `GET`\
 Respon : `file_modul.pdf`
 
 ---
 
-URL : `/api/modul/:idmodul`
-Method : `PATCH`
+URL : `/api/modul/:idmodul`\
+Method : `PATCH`\
 Format data :
 
 ```json
@@ -129,14 +129,23 @@ Respon :
 
 ```json
 {
-  "message": "Modul diupdate"
+  "message": "Modul diupdate",
+  "where": {
+    "id": "id_modul"
+  },
+  "data": {
+    "nama_file": ["upload_file"],
+    "nama_modul": "nama_modul",
+    "deskripsi": "deskripsi_modul",
+    "id_pokja": "id_pokja"
+  }
 }
 ```
 
 ---
 
-URL : `/api/modul/:idmodul`
-Method : `DELETE`
+URL : `/api/modul/:idmodul`\
+Method : `DELETE`\
 Respon :
 
 ```json
@@ -149,8 +158,8 @@ Respon :
 
 ## **Modul**
 
-URL : `/api/user`
-Method : `POST`
+URL : `/api/user`\
+Method : `POST`\
 Format data :
 
 ```json
@@ -180,8 +189,8 @@ Respon :
 
 ---
 
-URL : `/api/user/:iduser`
-Method : `GET`
+URL : `/api/user/:iduser`\
+Method : `GET`\
 Respon :
 
 ```json
@@ -199,16 +208,32 @@ Respon :
 
 ---
 
-URL : `/api/user/:iduser`
-Method : `PATCH`
+URL : `/api/user/:iduser`\
+Method : `PATCH`\
 Format data :
 
 ```json
 {
-  "username": "username",
   "password": "password",
   "nama": "nama_user",
   "email": "email_user",
   "id_pokja": "id_pokja"
+}
+```
+
+Respon data :
+
+```json
+{
+  "message": "User diupdate",
+  "where": {
+    "id": "id_user"
+  },
+  "data": {
+    "password": "password",
+    "nama": "nama_user",
+    "email": "email_user",
+    "id_pokja": "id_pokja"
+  }
 }
 ```
