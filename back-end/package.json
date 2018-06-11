@@ -2,6 +2,11 @@
   "name": "zmadak",
   "version": "1.0.0",
   "main": "index.js",
+  "author": {
+    "name": "Eore",
+    "email": "eore26@gmail.com",
+    "url": "https://eore.github.io"
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",

@@ -61,11 +61,10 @@ router
     editModul(rq.params.idmodul, { ...rq.body, nama_file }).then(() =>
       rs.status(201).json({
         message: "Modul diupdate",
+        where: rq.params,
         data: { ...rq.body, nama_file }
       })
     );
   });
-
-router.route("/getfile/:id");
 
 module.exports = router;

@@ -22,7 +22,6 @@ module.exports = {
       .find({ where: { id }, include: [require("../pokja/model")] })
       .then(el => {
         return {
-          id: el.id,
           username: el.username,
           nama: el.nama,
           email: el.email,
