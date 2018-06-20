@@ -10,7 +10,7 @@ router.get("/logout", (rq, rs) => {
 router.route("/login").post((rq, rs) => {
   login(rq.body.username, rq.body.password).then(val => {
     if (val) {
-      let token = genToken({ id: val.id, username: val.username });
+      let token = genToken(val);
       rs.cookie("usertoken", token, { httpOnly: true, signed: true });
       rs.status(201).json({
         message: "Login berhasil",

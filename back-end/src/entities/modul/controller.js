@@ -9,17 +9,21 @@ module.exports = {
   editModul(id, data = { nama_modul, nama_file, deskripsi, id_pokja }) {
     return model.update(data, { where: { id } });
   },
-  listModul(pokja) {
-    return model
-      .findAll({
-        include: [{ model: require("../pokja/model"), where: { pokja } }]
-      })
-      .then(list => {
-        return list.map(el => {
-          let { id_pokja, pokja, ...newReturn } = el.dataValues;
-          return newReturn;
-        });
+  listModul(id_pokja) {
+    return model.findAll({ where: { id_pokja } }).then(list => {
+      return list.map(el => {
+        let { id_pokja, pokja, ...newReturn } = el.dataValues;
+        return newReturn;
       });
+    });
+  },
+  listModulPublik(pokja) {
+    return model.findAll({ where: { pokja, publik: true } }).then(list => {
+      return list.map(el => {
+        let { id_pokja, pokja, ...newReturn } = el.dataValues;
+        return newReturn;
+      });
+    });
   },
   hapusModul(id) {
     return model.find({ where: { id } }).then(val => {

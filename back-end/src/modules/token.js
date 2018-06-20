@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  genToken({ id, username }) {
-    return jwt.sign({ id, username }, "miaw");
+  genToken(data = { id, username, nama, pokja }) {
+    return jwt.sign(data, "miaw");
   },
   decodeToken(token) {
     return jwt.decode(token);

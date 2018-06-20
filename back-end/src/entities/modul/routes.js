@@ -4,16 +4,19 @@ const {
   listModul,
   hapusModul,
   cariFileModul,
-  editModul
+  editModul,
+  listModulPublik
 } = require("./controller");
 const multer = require("multer");
 const upload = multer({ dest: "storage/" });
 const { join } = require("path");
+const { decodeToken } = require("../../modules/token");
 
 router
-  .route("/") // /modul?filter=pokja
+  .route("/")
   .get((rq, rs) => {
-    listModul(rq.query.filter).then(res =>
+    let id_pokja = decodeToken(rq.signedCookies.usertoken).pokja.id;
+    listModul(id_pokja).then(res =>
       rs.status(200).json({
         message: "List didapatkan",
         data: res
@@ -22,17 +25,27 @@ router
   })
   .post(upload.single("modul"), (rq, rs) => {
     let nama_file = rq.file === undefined ? null : rq.file.filename;
-    tambahModul({ ...rq.body, nama_file })
+    let id_pokja = decodeToken(rq.signedCookies.usertoken).pokja.id;
+    tambahModul({ ...rq.body, id_pokja, nama_file })
       .then(() =>
         rs.status(201).json({
           message: "Modul ditambah",
-          data: { ...rq.body, nama_file }
+          data: { ...rq.body, id_pokja, nama_file }
         })
       )
       .catch(err => {
-        rs.status(500).json({ message: "Modul sudah ada" });
+        rs.status(500).json({ message: "Input salah atau modul sudah ada" });
       });
   });
+
+router.route("/public/:pokja").get((rq, rs) => {
+  listModulPublik(rq.params.pokja).then(res =>
+    rs.status(200).json({
+      message: "List didapatkan",
+      data: res
+    })
+  );
+});
 
 router
   .route("/:idmodul")

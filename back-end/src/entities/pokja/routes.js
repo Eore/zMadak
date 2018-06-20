@@ -20,7 +20,7 @@ router
         })
       )
       .catch(err => {
-        rs.status(500).json({ message: "Pokja sudah ada" });
+        rs.status(500).json({ message: "Input salah atau pokja sudah ada" });
       });
   });
 

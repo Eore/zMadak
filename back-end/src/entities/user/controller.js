@@ -30,6 +30,18 @@ module.exports = {
       });
   },
   login(username, password) {
-    return model.find({ where: { username, password: encrypt(password) } });
+    return model
+      .find({
+        where: { username, password: encrypt(password) },
+        include: [require("../pokja/model")]
+      })
+      .then(el => {
+        return {
+          id: el.id,
+          username: el.username,
+          nama: el.nama,
+          pokja: { id: el.pokja.id, pokja: el.pokja.pokja }
+        };
+      });
   }
 };

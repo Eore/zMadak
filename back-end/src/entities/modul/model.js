@@ -34,6 +34,10 @@ const modul = sql.define(
       validate: {
         notEmpty: true
       }
+    },
+    publik: {
+      type: S.BOOLEAN,
+      defaultValue: false
     }
   },
   {
