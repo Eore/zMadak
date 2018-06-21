@@ -18,12 +18,17 @@ module.exports = {
     });
   },
   listModulPublik(pokja) {
-    return model.findAll({ where: { pokja, publik: true } }).then(list => {
-      return list.map(el => {
-        let { id_pokja, pokja, ...newReturn } = el.dataValues;
-        return newReturn;
+    return model
+      .findAll({
+        include: [{ model: require("../pokja/model"), where: { pokja } }],
+        where: { publik: true }
+      })
+      .then(list => {
+        return list.map(el => {
+          let { id_pokja, pokja, ...newReturn } = el.dataValues;
+          return newReturn;
+        });
       });
-    });
   },
   hapusModul(id) {
     return model.find({ where: { id } }).then(val => {

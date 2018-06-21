@@ -69,7 +69,7 @@ router
       }
     });
   })
-  .patch((rq, rs) => {
+  .patch(upload.single("modul"), (rq, rs) => {
     let nama_file = rq.file === undefined ? null : rq.file.filename;
     editModul(rq.params.idmodul, { ...rq.body, nama_file }).then(() =>
       rs.status(201).json({

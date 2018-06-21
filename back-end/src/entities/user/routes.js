@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { cariUser, tambahUser, editUser } = require("./controller");
-const { genToken } = require("../../modules/token");
 
 router.route("/").post((rq, rs) => {
   tambahUser(rq.body)
@@ -16,14 +15,20 @@ router.route("/").post((rq, rs) => {
 });
 
 router
-  .route("/:id")
+  .route("/:id?")
   .get((rq, rs) => {
-    cariUser(rq.params.id).then(res =>
-      rs.status(200).json({
-        message: "User didapatkan",
-        data: res
-      })
-    );
+    cariUser(rq.params.id)
+      .then(res =>
+        rs.status(200).json({
+          message: "User didapatkan",
+          data: res
+        })
+      )
+      .catch(err =>
+        rs.status(500).json({
+          message: "Input id user"
+        })
+      );
   })
   .patch((rq, rs) => {
     editUser(rq.params.id, rq.body).then(val => {
