@@ -83,7 +83,7 @@ Format data :
 
 ```json
 {
-  "nama_file": ["upload_file"],
+  "modul": ["upload_file"],
   "nama_modul": "nama_modul",
   "deskripsi": "deskripsi_modul",
   "id_pokja": "id_pokja"
@@ -96,7 +96,7 @@ Respon :
 {
   "message": "Modul ditambah",
   "data": {
-    "nama_file": "nama_file",
+    "modul": "nama_file",
     "nama_modul": "nama_modul",
     "deskripsi": "deskripsi_modul",
     "id_pokja": "id_pokja"
@@ -118,7 +118,7 @@ Format data :
 
 ```json
 {
-  "nama_file": ["upload_file"],
+  "modul": ["upload_file"],
   "nama_modul": "nama_modul",
   "deskripsi": "deskripsi_modul",
   "id_pokja": "id_pokja"
@@ -156,7 +156,7 @@ Respon :
 
 ---
 
-## **Modul**
+## **User**
 
 URL : `/api/user`\
 Method : `POST`\
