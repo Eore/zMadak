@@ -40,7 +40,8 @@ module.exports = {
           id: el.id,
           username: el.username,
           nama: el.nama,
-          pokja: { id: el.pokja.id, pokja: el.pokja.pokja }
+          pokja: { id: el.pokja.id, pokja: el.pokja.pokja },
+          role: el.role
         };
       });
   }

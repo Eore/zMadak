@@ -44,6 +44,11 @@ const user = sql.define(
       validate: {
         notEmpty: true
       }
+    },
+    role: {
+      type: S.ENUM,
+      values: ["admin", "user"],
+      defaultValue: "user"
     }
   },
   {
