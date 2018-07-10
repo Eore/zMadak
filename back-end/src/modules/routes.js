@@ -1,8 +1,4 @@
-let routeAPI = [
-  ["/pokja", require("../entities/pokja/routes")],
-  ["/user", require("../entities/user/routes")],
-  ["/modul", require("../entities/modul/routes")]
-];
+let routeAPI = ["/pokja", "/user", "/modul"];
 
 module.exports.API = app => {
   app.use("/api", require("../modules/authRoute"));
@@ -13,12 +9,10 @@ module.exports.API = app => {
   });
 
   routeAPI.forEach(el => {
-    app.use(`/api` + el[0], el[1]);
+    app.use(`/api` + el, require(`../entities/${el.split("/")[1]}/routes`));
   });
 
-  app.use((rq, rs, nx) => {});
-
-  app.use("*", (rq, rs) => rs.send("404 page not found"));
+  app.use("*", (rq, rs) => rs.send("404 route not found"));
 
   return app;
 };
