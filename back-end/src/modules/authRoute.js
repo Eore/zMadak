@@ -27,7 +27,7 @@ router.route("/login").post((rq, rs) => {
       rs.cookie("usertoken", token, { httpOnly: true, signed: true });
       rs.status(201).json({
         message: "Login berhasil",
-        data: { token }
+        data: { token, nama: val.nama, pokja: val.pokja }
       });
     } else {
       rs.status(500).json({ message: "Login gagal" });
