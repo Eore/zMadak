@@ -1,6 +1,19 @@
 const router = require("express").Router();
-const { login } = require("../entities/user/controller");
+const { login, tambahUser } = require("../entities/user/controller");
 const { genToken } = require("./token");
+
+router.route("/daftar").post((rq, rs) => {
+  tambahUser(rq.body)
+    .then(() =>
+      rs.status(201).json({
+        message: "User ditambah",
+        data: rq.body
+      })
+    )
+    .catch(err => {
+      rs.status(500).json({ message: "User sudah ada" });
+    });
+});
 
 router.get("/logout", (rq, rs) => {
   rs.clearCookie("usertoken");

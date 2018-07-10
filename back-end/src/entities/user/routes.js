@@ -1,18 +1,5 @@
 const router = require("express").Router();
-const { cariUser, tambahUser, editUser } = require("./controller");
-
-router.route("/").post((rq, rs) => {
-  tambahUser(rq.body)
-    .then(() =>
-      rs.status(201).json({
-        message: "User ditambah",
-        data: rq.body
-      })
-    )
-    .catch(err => {
-      rs.status(500).json({ message: "User sudah ada" });
-    });
-});
+const { cariUser, editUser } = require("./controller");
 
 router
   .route("/:id?")
