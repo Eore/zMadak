@@ -1,5 +1,20 @@
 const router = require("express").Router();
-const { cariUser, editUser } = require("./controller");
+const { listUser, cariUser, editUser } = require("./controller");
+
+route.route("/").get((rq, rs) => {
+  listUser()
+    .then(res =>
+      rs.status(200).json({
+        message: "User didapatkan",
+        data: res
+      })
+    )
+    .catch(err =>
+      rs.status(500).json({
+        message: "Error"
+      })
+    );
+});
 
 router
   .route("/:id?")

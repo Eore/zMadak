@@ -17,6 +17,16 @@ module.exports = {
       { where: { id } }
     );
   },
+  listUser() {
+    return model.findAll({ include: [require("../pokja/model")] }).then(el => {
+      return {
+        username: el.username,
+        nama: el.nama,
+        email: el.email,
+        pokja: el.pokja.pokja
+      };
+    });
+  },
   cariUser(id) {
     return model
       .find({ where: { id }, include: [require("../pokja/model")] })
