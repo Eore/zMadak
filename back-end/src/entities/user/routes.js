@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { listUser, cariUser, editUser } = require("./controller");
 
-route.route("/").get((rq, rs) => {
+router.route("/").get((rq, rs) => {
   listUser()
     .then(res =>
       rs.status(200).json({
